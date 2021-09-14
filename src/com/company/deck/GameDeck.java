@@ -1,6 +1,7 @@
 package com.company.deck;
 
 import com.company.card.Card;
+import com.company.card.PlayingCard;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,7 +18,7 @@ public class GameDeck implements Deck {
         cards = new ArrayList<>();
         for (var suit : SUITS) {
             for (var value : VALUES) {
-                cards.add(new Card(value, suit));
+                cards.add(new PlayingCard(suit,value));
             }
         }
     }
