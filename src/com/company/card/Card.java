@@ -1,63 +1,33 @@
 package com.company.card;
 
-public class Card {
+public abstract class Card {
 
-    protected boolean faceDown;
-    private int value;
-    private String suit;
+    protected boolean isFaceDown;
+    protected String cardFace;
 
 
-    public Card(int value, String suit) {
-        this.value = value;
-        this.suit = suit;
-        this.faceDown = true;
+    public Card(String cardFace, boolean isFaceDown) {
+        this.isFaceDown = isFaceDown;
+        this.cardFace = cardFace;
 
     }
 
-    public void flip() {
-        faceDown = !faceDown;
-    }
+    public abstract void flip();
+//    {
+//        isFaceDown = !isFaceDown;
+//    }
 
-//    public String getCardFace() {
-//        if (this.faceDown)
+    public abstract String getCardFace();
+//    {
+//        if (this.isFaceDown)
 //            return this.cardFace;
 //        return "[#]";
 //    }
 
 
-//    @Override
-//    public String toString() {
-//        return "Card{ faceUpDown: " + faceDown + ", cardFace: '" + cardFace + " }";
-//    }
-
-
-    public int getValue() {
-        return this.value;
-    }
-
-    public boolean isFaceDown() {
-        return faceDown;
-    }
-
+    @Override
     public String toString() {
-        String output = "";
-        switch (value) {
-            case 1:
-                output = "A";
-                break;
-            case 11:
-                output = "J";
-                break;
-            case 12:
-                output = "Q";
-                break;
-            case 13:
-                output = "K";
-                break;
-            default:
-                output = value == 10 ? Integer.toString(value) : "" + value;
-        }
-        return output + suit;
+        return "Card{ isfaceDown: " + isFaceDown + ", cardFace: '" + cardFace + " }";
     }
 
 }
