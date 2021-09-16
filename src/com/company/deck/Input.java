@@ -13,11 +13,20 @@ public class Input {
     }
     public static int inputNumberText(String string) {
         System.out.print(string);
-        return input.nextInt();
+        int choice = 0;
+        try {
+            System.out.print("==>");
+            choice = input.nextInt();
+        } catch (InputMismatchException err) {
+         //   System.out.println("Error: Input must be a number.");
+            inputNumberText("Error: Input must be a number.");
+        }
+        return choice;
     }
     public static String inputString() {
         return input.next();
     }
+
     public static int inputNumber() {
         int choice=0;
         try {
