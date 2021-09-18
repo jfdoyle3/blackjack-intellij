@@ -1,11 +1,6 @@
 package com.company;
 
-import com.company.card.Card;
-import com.company.deck.GameDeck;
-import com.company.deck.Input;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.company.ui.Input;
 
 public class Main {
 

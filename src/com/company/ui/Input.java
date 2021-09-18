@@ -1,4 +1,4 @@
-package com.company.deck;
+package com.company.ui;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
