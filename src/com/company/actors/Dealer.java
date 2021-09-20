@@ -2,7 +2,7 @@ package com.company.actors;
 
 public class Dealer implements Actor {
 
-    static String NAME = "Dealer";
+    private static final String NAME = "Dealer";
 
 
     @Override
@@ -12,13 +12,8 @@ public class Dealer implements Actor {
 
 
     @Override
-    public int getAction(int score) {
-        //return score<DECISION ? HIT:STAND;
-        if (score < 17) {
-            return 1;
-        } else {
-            return 2;
-        }
+    public void getAction() {
+        System.out.println("performed Action");
     }
 
 }

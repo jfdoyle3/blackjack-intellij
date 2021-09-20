@@ -1,6 +1,5 @@
 package com.company.actors;
 
-import com.company.ui.ErrorConsole;
 import com.company.ui.Input;
 
 public class Player implements Actor{
@@ -21,18 +20,8 @@ public class Player implements Actor{
 
 
     @Override
-    public int getAction(int score) {
-        int option;
-        do {
-            option = Input.inputNumberText("Choices: 1-Hit or 2-Stand? ");
-
-        } while (option < 1 || option > 2);
-
-        return option;
+    public void getAction() {
+        System.out.println("performed action");
     }
-
-
-
-
 
 }
