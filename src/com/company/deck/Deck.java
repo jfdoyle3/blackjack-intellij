@@ -1,11 +1,6 @@
-package com.company.deck;
-
-import com.company.card.Card;
+package com.company.cardGame.deck;
 
 public interface Deck {
     void shuffle();
-
-    Card draw(boolean facing);
-
-    boolean deckEmpty();
+    Card draw();
 }
