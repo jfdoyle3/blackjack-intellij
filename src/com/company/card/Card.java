@@ -18,18 +18,6 @@ public class Card {
         faceDown = !faceDown;
     }
 
-//    public String getCardFace() {
-//        if (this.faceDown)
-//            return this.cardFace;
-//        return "[#]";
-//    }
-
-
-//    @Override
-//    public String toString() {
-//        return "Card{ faceUpDown: " + faceDown + ", cardFace: '" + cardFace + " }";
-//    }
-
 
     public int getValue() {
         return this.value;
