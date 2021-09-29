@@ -18,7 +18,10 @@ public class Table {
     Hand dealer = new Hand(new Dealer());
     Deck deck;
     int BUST_VALUE = 21;
-
+    /*
+         Idea: Objective: To get players no longer playing to be sorted/placed at the end of the list to be removed.
+         try using .sort(handTotal) or .set(Player's index) to the end of List.
+     */
     public void playRound() {
         deck = new StandardDeck();
 //        deck = new RiggedDeck();
