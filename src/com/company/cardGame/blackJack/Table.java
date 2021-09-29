@@ -10,10 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Table {
-    // TODO: remove this item.
-    Hand player = new Hand(new Player("player"));
+
     // TODO: try to implement multiple hands.
-    List<Hand> hands = new ArrayList<>();
+    List<Hand> playerHands = new ArrayList<>();
     // TODO: more comfortable -> try to accomplish without the players list.
     List<Actor> players = new ArrayList<>();
     Hand dealer = new Hand(new Dealer());
@@ -24,6 +23,7 @@ public class Table {
         deck = new StandardDeck();
 //        deck = new RiggedDeck();
         deck.shuffle();
+        playerHands.add(new Hand(new Player("player")));
         /*
         0. take bets
         1. deal cards
@@ -32,21 +32,22 @@ public class Table {
         a3. dealers turn
         a4. see who one
          */
-        player.placeBet();
+        playerHands.get(0).placeBet();
         deal();
         displayTable();
-        while(turn(player)) {}
-        System.out.println(player.displayHand());
-        while (turn(dealer));
+        while (turn(playerHands.get(0))) {
+        }
+        System.out.println(playerHands.get(0).displayHand());
+        while (turn(dealer)) ;
         displayTable();
         determineWinner();
-        System.out.println(player.getBalance());
+        System.out.println(playerHands.get(0).getBalance());
     }
 
     private void displayTable() {
         StringBuilder output = new StringBuilder();
         output.append(dealer.getName() + " ").append(dealer.displayHand()).append("\n");
-        output.append(player.getName() + " ").append(player.displayHand());
+        output.append(playerHands.get(0).getName() + " ").append(playerHands.get(0).displayHand());
         System.out.println(output);
     }
 
@@ -54,23 +55,23 @@ public class Table {
         for (int count = 0; count < 2; count++) {
             // list of hands
             dealer.addCard(deck.draw());
-            player.addCard(deck.draw());
+            playerHands.get(0).addCard(deck.draw());
         }
     }
 
     private void determineWinner() {
-        if (player.getValue() > BUST_VALUE) {
+        if (playerHands.get(0).getValue() > BUST_VALUE) {
             System.out.println("Player Busted");
             return;
         }
-        if (player.getValue() > dealer.getValue() || dealer.getValue() > BUST_VALUE) {
+        if (playerHands.get(0).getValue() > dealer.getValue() || dealer.getValue() > BUST_VALUE) {
             System.out.println("Player Wins");
-            player.payout(Hand.NORMALPAY);
+            playerHands.get(0).payout(Hand.NORMALPAY);
             return;
         }
-        if (player.getValue() == dealer.getValue()) {
+        if (playerHands.get(0).getValue() == dealer.getValue()) {
             System.out.println("Push");
-            player.payout(Hand.PUSHPAY);
+            playerHands.get(0).payout(Hand.PUSHPAY);
             return;
         }
         System.out.println("Dealer Wins");
@@ -90,10 +91,10 @@ public class Table {
     }
 
     private boolean hit(Hand activeHand) {
-        // TODO: hit
+
         activeHand.addCard(deck.draw());
         System.out.println("Hit");
-        if (activeHand.getValue() > BUST_VALUE){
+        if (activeHand.getValue() > BUST_VALUE) {
             System.out.println("Busted");
             return false;
         }
@@ -101,13 +102,13 @@ public class Table {
     }
 
     private boolean stand(Hand activeHand) {
-        // TODO: stand
+
         System.out.println("Stand");
         return false;
     }
 
     private boolean doubleDown(Hand activeHand) {
-        // TODO: double
+
         activeHand.doubleBet();
         System.out.println("Bet Doubled");
         hit(activeHand);
