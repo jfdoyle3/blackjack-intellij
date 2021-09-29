@@ -1,4 +1,4 @@
-package com.company.cardGame.deck;
+package com.company.cardgame.deck;
 
 import java.util.*;
 

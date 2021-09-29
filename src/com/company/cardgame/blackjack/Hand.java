@@ -1,21 +1,17 @@
-package com.company.cardGame.blackJack;
+package com.company.cardgame.blackjack;
 
-import com.company.cardGame.deck.Card;
+import com.company.cardgame.deck.Card;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
-    private final List<Card> cards = new ArrayList<>();
+    private List<Card> cards = new ArrayList<>();
     private int bet = 0;
-    private final Actor HOLDER;
+    private Actor holder;
 
-    public Hand(Actor HOLDER) {
-        this.HOLDER = HOLDER;
-    }
-
-    public byte getAction() {
-        return HOLDER.getAction(this);
+    public Hand(Actor holder) {
+        this.holder = holder;
     }
 
     public void addCard(Card card) {
@@ -35,7 +31,7 @@ public class Hand {
         int score = 0;
         boolean haveAce11 = false;
         for (Card card : cards) {
-            int value = card.getValue();
+            int value = card.getRank();
             switch (value) {
                 case 1 -> {
                     value = score + 11 > 21 ? 1 : 11;
@@ -55,5 +51,26 @@ public class Hand {
 
         return score;
     }
+
+    // getting composition methods
+    // getter with no setter
+    // pass through method
+    public byte getAction() {
+        return holder.getAction(this);
+    }
+
+    public int size() { return cards.size(); }
+
+    public int getBet() { return bet; }
+
+    // hasPair -> returns true if at least 1 pair is in the hand.
+    // isPair -> takes 2 cards and determines if pair
+    // countPair -> count all instances of pairs in a hand.
+    // checkPair -> check first two cards for pair
+    public boolean canSplit() {
+        return cards.get(0).getRank() == cards.get(1).getRank();
+    }
+
+    public void doubleBet(){ bet *=2;}
 
 }
