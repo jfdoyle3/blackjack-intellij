@@ -1,10 +1,11 @@
 package com.company.cardGame.actor;
+
 import com.company.cardGame.blackJack.Actor;
 import com.company.cardGame.blackJack.Hand;
 
-public class Dealer implements Actor{
+public class Dealer implements Actor {
+    int STAND_VALUE = 17;
 
-    @Override
     public String getName() {
         return "John Wick";
     }
@@ -19,9 +20,7 @@ public class Dealer implements Actor{
         return 0;
     }
 
-    @Override
     public byte getAction(Hand hand) {
-
-        return hand.getValue() < 17 ? HIT : STAND;
+        return hand.getValue() < STAND_VALUE ? HIT : STAND;
     }
 }
