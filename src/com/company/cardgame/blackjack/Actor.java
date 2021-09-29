@@ -1,4 +1,4 @@
-package com.company.cardgame.blackjack;
+package com.company.cardGame.blackJack;
 
 public interface Actor {
     byte HIT = 1;

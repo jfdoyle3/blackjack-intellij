@@ -1,7 +1,7 @@
-package com.company.cardgame.actors;
+package com.company.cardGame.actor;
 
-import com.company.cardgame.blackjack.Hand;
-import com.company.cardgame.blackjack.Actor;
+import com.company.cardGame.blackJack.Actor;
+import com.company.cardGame.blackJack.Hand;
 
 public class Dealer implements Actor {
     int STAND_VALUE = 17;

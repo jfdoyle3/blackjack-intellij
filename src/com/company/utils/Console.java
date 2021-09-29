@@ -1,11 +1,11 @@
-package com.company.utils;
+package com.company.Utils;
 
 import java.util.Scanner;
 
 public class Console {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static int getInt(String prompt, int min, int max, String errorMsg) {
+    public static int getInt(int min, int max, String prompt, String errorMsg) {
         int option = min - 1;
         do {
             System.out.println(prompt);
