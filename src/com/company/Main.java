@@ -4,6 +4,7 @@ package com.company;
 import com.company.cardGame.blackJack.Table;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Main {
@@ -12,9 +13,6 @@ public class Main {
         Table table=new Table();
 
         table.playRound();
-
-
-
 
     }
 }
