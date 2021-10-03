@@ -7,7 +7,7 @@ public class Dealer implements Actor {
     int STAND_VALUE = 17;
 
     public String getName() {
-        return "John Wick";
+        return "John Cleese";
     }
 
     @Override
