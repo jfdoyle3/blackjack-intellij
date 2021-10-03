@@ -55,22 +55,14 @@ public class Player implements Actor {
     }
 
     @Override
-<<<<<<< HEAD
-    public byte getAction(Hand hand) {
-=======
     public byte getAction(Hand hand, Hand dealer) {
->>>>>>> main
         //display hand and value
         System.out.println(hand.displayHand());
         System.out.println(hand.getValue());
         return (byte) Console.getInt(getAvailableActions(hand), 0, actionsCount, "invalid action");
     }
 
-<<<<<<< HEAD
-    public void addBalance(int amt) {
-=======
     public void addBalance(double amt) {
->>>>>>> main
         balance += amt;
     }
 
