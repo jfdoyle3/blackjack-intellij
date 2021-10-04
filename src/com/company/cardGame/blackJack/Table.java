@@ -1,15 +1,13 @@
 package com.company.cardGame.blackJack;
 
 import com.company.Utils.Console;
+import com.company.cardGame.actor.Jim;
 import com.company.cardGame.actor.Dealer;
-import com.company.cardGame.actor.Player;
 import com.company.cardGame.deck.Deck;
-import com.company.cardGame.deck.RiggedDeck;
 import com.company.cardGame.deck.StandardDeck;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Table {
     // TODO: remove this item.
@@ -23,11 +21,12 @@ public class Table {
     public static final int BUST_VALUE = 21;
 
     public Table() {
-        playerCount = Console.getInt("How many players?", 1, 6, "invalid player selection");
-        for (int count = 0; count < playerCount; count++) {
-            Player newPlayer = new Player("Player " + (count + 1));
-            hands.add(new Hand(newPlayer));
-        }
+        hands.add(new Hand(new Jim()));
+//        playerCount = Console.getInt("How many players?", 1, 6, "invalid player selection");
+//        for (int count = 0; count < playerCount; count++) {
+//            Player newPlayer = new Player("Player " + (count + 1));
+//            hands.add(new Hand(newPlayer));
+//        }
     }
 
     /* handle split
@@ -35,9 +34,9 @@ public class Table {
      */
 
     public void playGame() {
-        while(true) {
+      //  while(true) {
             playRound();
-        }
+      //  }
     }
 
     public void playRound() {
@@ -46,17 +45,18 @@ public class Table {
         deck.shuffle();
         getBets();
         deal();
-        displayTable();
-        playerTurns();
-        while (turn(dealer));
-        displayTable();
-        endRound();
+//        displayTable();
+//        playerTurns();
+//        while (turn(dealer));
+//        displayTable();
+//        endRound();
     }
 
     private void getBets() {
         for(Hand player : hands) {
             player.placeBet();
         }
+
     }
 
     private void playerTurns() {
