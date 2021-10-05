@@ -1,8 +1,8 @@
 package com.company.cardGame.blackJack;
 
 import com.company.Utils.Console;
-import com.company.cardGame.actor.Jim;
 import com.company.cardGame.actor.Dealer;
+import com.company.cardGame.actor.Player;
 import com.company.cardGame.deck.Deck;
 import com.company.cardGame.deck.StandardDeck;
 
@@ -21,12 +21,11 @@ public class Table {
     public static final int BUST_VALUE = 21;
 
     public Table() {
-        hands.add(new Hand(new Jim()));
-//        playerCount = Console.getInt("How many players?", 1, 6, "invalid player selection");
-//        for (int count = 0; count < playerCount; count++) {
-//            Player newPlayer = new Player("Player " + (count + 1));
-//            hands.add(new Hand(newPlayer));
-//        }
+        playerCount = Console.getInt("How many players?", 1, 6, "invalid player selection");
+        for (int count = 0; count < playerCount; count++) {
+            Player newPlayer = new Player("Player " + (count + 1));
+            hands.add(new Hand(newPlayer));
+        }
     }
 
     /* handle split
@@ -34,9 +33,9 @@ public class Table {
      */
 
     public void playGame() {
-      //  while(true) {
+        while(true) {
             playRound();
-      //  }
+        }
     }
 
     public void playRound() {
@@ -45,23 +44,24 @@ public class Table {
         deck.shuffle();
         getBets();
         deal();
-//        displayTable();
-//        playerTurns();
-//        while (turn(dealer));
-//        displayTable();
-//        endRound();
+        displayTable();
+        playerTurns();
+        dealer.revealHand();
+        while (turn(dealer));
+        displayTable();
+        endRound();
     }
 
     private void getBets() {
         for(Hand player : hands) {
             player.placeBet();
         }
-
     }
 
     private void playerTurns() {
         for (int count = 0; count < hands.size(); count++){
             Hand player = hands.get(count);
+            player.revealHand();
             while(true) {
                 if(!turn(player)) break;
             }
@@ -73,7 +73,9 @@ public class Table {
         for (Hand player : hands) {
             determineWinner(player);
             System.out.println(player.getBalance());
+            player.discardHand();
         }
+        dealer.discardHand();
         while ( hands.size() > playerCount) {
             hands.remove(hands.size() - 1);
         }
@@ -91,9 +93,16 @@ public class Table {
     private void deal() {
         for (int count = 0; count < 2; count++) {
             // list of hands
-            dealer.addCard(deck.draw());
+            dealer.addCard(count == 0 ? deck.draw() : deck.flipDraw());
             for (Hand player : hands) {
-                player.addCard(deck.draw());
+//                if (count == 0) {
+//                    player.addCard(deck.draw());
+//                } else {
+//                    Card card = deck.draw();
+//                    card.flip();
+//                    player.addCard(card);
+//                }
+                player.addCard(count == 0 ? deck.draw() : deck.flipDraw());
             }
         }
     }
@@ -119,7 +128,7 @@ public class Table {
     private boolean turn(Hand activeHand) {
         System.out.println(dealer.getName() + " " + dealer.displayHand());
         System.out.println(activeHand.getName());
-        byte action = activeHand.getAction(dealer);
+        byte action = activeHand.getAction(dealer.getShownRank());
         return switch (action) {
             case Actor.QUIT -> quit();
             case Actor.HIT -> hit(activeHand);
@@ -137,7 +146,7 @@ public class Table {
 
     private boolean hit(Hand activeHand) {
         // TODO: hit
-        activeHand.addCard(deck.draw());
+        activeHand.addCard(deck.flipDraw());
         System.out.println("Hit");
         if (activeHand.getValue() > BUST_VALUE){
             System.out.println("Busted");
@@ -169,8 +178,8 @@ public class Table {
          */
         activeHand.doubleBet();
         Hand newHand = activeHand.splitHand();
-        activeHand.addCard(deck.draw());
-        newHand.addCard(deck.draw());
+        activeHand.addCard(deck.flipDraw());
+        newHand.addCard(deck.flipDraw());
         hands.add(newHand);
 
         return true;
