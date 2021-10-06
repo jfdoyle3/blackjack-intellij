@@ -25,6 +25,7 @@ public class Jim implements Actor {
         return rand.nextInt(getBalance());
     }
 
+
     @Override
     public byte getAction(Hand hand, Hand dealer) {
        if(hand.getValue()>=STAND_MAX)

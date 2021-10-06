@@ -45,11 +45,11 @@ public class Table {
         deck.shuffle();
         getBets();
         deal();
-//        displayTable();
-//        playerTurns();
-//        while (turn(dealer));
-//        displayTable();
-//        endRound();
+        displayTable();
+        playerTurns();
+        while (turn(dealer));
+        displayTable();
+        endRound();
     }
 
     private void getBets() {
